@@ -1,4 +1,4 @@
-## Covid Triage and Testing
+## Covid Triage and Testing (covidtritest)
 
 - Backend  => Java/SpringBoot
 - Frontend => Javascript/VueJs
@@ -31,5 +31,24 @@ b. Triage and record COVID-19 sysmptoms
 c. Post data to an API endpoint (backend) – Use of a database for persistence is optional
 d. Provide a basic report (simple table) on those screened for COVID-19
 
+### Solution
+
+#### Backend
+#### Build and Run
+
+./mvnw spring-boot:run
+./mvnw clean
+./mvnw clean spring-boot:run
+./mvnw clean install -- build and install on local machine
+./mvnw clean package -- build and package
+./mvnw clean test -- test the app
+
+#### Frontend
+#### Build and Run
+
+npm install -- install dependencies
+npm run dev -- run app
+npm run test:unit -- run tests
+npm run build -- build for deployment
 
 
