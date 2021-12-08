@@ -52,7 +52,7 @@ import java.net.*;
 //// @WebAppConfiguration
 //@SpringBootConfiguration(classes = SupermarketApplication.class)
 @WithMockUser
-@ComponentScan(basePackages = "patnox.supermarket")
+//@ComponentScan(basePackages = "patnox.supermarket")
 //@Import({OrderController.class, AopAutoConfiguration.class, WebClientTestConfiguration.class})
 //@RunWith(SpringRunner.class)
 //@WebMvcTest(controllers = OrderController.class)

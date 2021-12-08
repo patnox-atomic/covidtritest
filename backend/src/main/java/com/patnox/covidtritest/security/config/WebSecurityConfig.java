@@ -44,9 +44,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     	//http.authenticated().and().formLogin();
     	http.authorizeRequests().antMatchers("/api/refreshtoken/**").permitAll();
     	http.authorizeRequests().antMatchers("/api/v*/registration/**").permitAll();
-        http.authorizeRequests().antMatchers("/api/v*/order/**").hasAnyAuthority("RETAIL_ATTENDANT_ROLE", "WAREHOUSE_ATTENDANT_ROLE", "SUPERUSER_ROLE");
-        http.authorizeRequests().antMatchers("/api/v*/product/**").hasAnyAuthority("RETAIL_ATTENDANT_ROLE", "WAREHOUSE_ATTENDANT_ROLE", "SUPERUSER_ROLE");
-        http.authorizeRequests().antMatchers("/api/v*/sale/**").hasAnyAuthority("RETAIL_ATTENDANT_ROLE", "WAREHOUSE_ATTENDANT_ROLE", "SUPERUSER_ROLE");
+        http.authorizeRequests().antMatchers("/api/v*/gender/**").hasAnyAuthority("RETAIL_ATTENDANT_ROLE", "WAREHOUSE_ATTENDANT_ROLE", "SUPERUSER_ROLE");
+        http.authorizeRequests().antMatchers("/api/v*/patient/**").hasAnyAuthority("RETAIL_ATTENDANT_ROLE", "WAREHOUSE_ATTENDANT_ROLE", "SUPERUSER_ROLE");
+        http.authorizeRequests().antMatchers("/api/v*/country/**").hasAnyAuthority("RETAIL_ATTENDANT_ROLE", "WAREHOUSE_ATTENDANT_ROLE", "SUPERUSER_ROLE");
+        http.authorizeRequests().antMatchers("/api/v*/priority/**").hasAnyAuthority("RETAIL_ATTENDANT_ROLE", "WAREHOUSE_ATTENDANT_ROLE", "SUPERUSER_ROLE");
+        http.authorizeRequests().antMatchers("/api/v*/triage/**").hasAnyAuthority("RETAIL_ATTENDANT_ROLE", "WAREHOUSE_ATTENDANT_ROLE", "SUPERUSER_ROLE");
         http.authorizeRequests().antMatchers("/api/v*/user/**").hasAnyAuthority("SUPERUSER_ROLE");
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));

@@ -69,10 +69,10 @@ public class CountryService
 			Country victimizedOrder = countryRepository.findById(orderId).orElseThrow(() -> new IllegalStateException("Country with ID: " + orderId + " does not exist"));
 			//Product victimizedProduct = productRepository.findById(product_id).orElseThrow(() -> new IllegalStateException("Product with ID: " + product_id + " does not exist"));
 			//if(product_id != null && product_id != 0) victimizedOrder.setProduct(victimizedProduct);
-			if(quantity != null && quantity != 0) victimizedOrder.setQuantity(quantity);
-			if(is_fullfilled != null) victimizedOrder.setIs_fullfilled(is_fullfilled);
-			if(product_id != null && date_ordered.length() > 0) victimizedOrder.setDate_ordered(LocalDate.parse(date_ordered, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-			if(date_fullfilled != null && date_fullfilled.length() > 0) victimizedOrder.setDate_fullfilled(LocalDate.parse(date_fullfilled, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+//			if(quantity != null && quantity != 0) victimizedOrder.setQuantity(quantity);
+//			if(is_fullfilled != null) victimizedOrder.setIs_fullfilled(is_fullfilled);
+//			if(product_id != null && date_ordered.length() > 0) victimizedOrder.setDate_ordered(LocalDate.parse(date_ordered, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+//			if(date_fullfilled != null && date_fullfilled.length() > 0) victimizedOrder.setDate_fullfilled(LocalDate.parse(date_fullfilled, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 			if(is_deleted != null) victimizedOrder.setIs_deleted(is_deleted);
 		}
 	}

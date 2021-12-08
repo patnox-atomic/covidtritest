@@ -10,10 +10,10 @@ import java.util.Optional;
 @Repository
 public interface GenderRepository extends JpaRepository<Gender, Long>
 {
-	@Query("SELECT s FROM orders s WHERE s.product.id = ?1")
-	Optional<Gender> findOrderByProduct(long id);
-	
-	@Query("SELECT s FROM orders s WHERE s.product.id = ?1 and is_fullfilled = false")
-	//Optional<Gender> findUnfulfilledOrderByProduct(long id);
-	List<Gender> findUnfulfilledOrderByProduct(long id);
+//	@Query("SELECT s FROM orders s WHERE s.product.id = ?1")
+//	Optional<Gender> findOrderByProduct(long id);
+//
+//	@Query("SELECT s FROM orders s WHERE s.product.id = ?1 and is_fullfilled = false")
+//	//Optional<Gender> findUnfulfilledOrderByProduct(long id);
+//	List<Gender> findUnfulfilledOrderByProduct(long id);
 }

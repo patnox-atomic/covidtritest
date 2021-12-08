@@ -79,7 +79,7 @@ public class DataConfig
 					"GENERAL PRACTICE or AH SERVICE"
 			);
 			Priority pri4 = new Priority(
-					3L,
+					4L,
 					"Priority Four",
 					"DISCUSS WITH GP"
 			);
@@ -119,7 +119,7 @@ public class DataConfig
 			);
 			Patient pat4 = new Patient(
 					count3,
-					gen1,
+					gen2,
 					"Agnes",
 					"Wangui",
 					"P.O Box 389921 Dar Tanzania",
@@ -129,7 +129,7 @@ public class DataConfig
 			);
 			Patient pat5 = new Patient(
 					count6,
-					gen1,
+					gen2,
 					"Esther",
 					"Wanjiru",
 					"P.O Box 72881 Kigari Rwanda",
@@ -150,6 +150,38 @@ public class DataConfig
 			patientRepository.saveAll(
 					List.of(pat1, pat2, pat3, pat4, pat5, pat6)
 			);
+            //Sample Triage
+            Triage tri1 = new Triage(
+                    pat1,
+                    pri2,
+                    "120/80, 91",
+                    "36",
+                    "60"
+            );
+            Triage tri2 = new Triage(
+                    pat6,
+                    pri1,
+                    "240/160, 120",
+                    "92",
+                    "240"
+            );
+            Triage tri3 = new Triage(
+                    pat4,
+                    pri3,
+                    "120/80, 91",
+                    "32",
+                    "70"
+            );
+            Triage tri4 = new Triage(
+                    pat3,
+                    pri1,
+                    "234/140, 110",
+                    "96",
+                    "76"
+            );
+            triageRepository.saveAll(
+                    List.of(tri1, tri2, tri3, tri4)
+            );
 			//Sample roles
 //			USER_ROLE,
 //		    ADMIN_ROLE,

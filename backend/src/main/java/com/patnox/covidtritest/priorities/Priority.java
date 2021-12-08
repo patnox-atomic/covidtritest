@@ -29,7 +29,7 @@ public class Priority
 
 	  @NotNull
 	  @Min(1)
-	  @Column(name = "rank")
+	  @Column(name = "rank", unique = true, nullable = false)
 	  private Long rank;
 
 	@NotNull

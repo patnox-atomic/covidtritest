@@ -36,19 +36,24 @@ d. Provide a basic report (simple table) on those screened for COVID-19
 #### Backend
 #### Build and Run
 
+```sh
 ./mvnw spring-boot:run
 ./mvnw clean
 ./mvnw clean spring-boot:run
 ./mvnw clean install -- build and install on local machine
 ./mvnw clean package -- build and package
 ./mvnw clean test -- test the app
+```
 
 #### Frontend
 #### Build and Run
 
+```sh
 npm install -- install dependencies
 npm run dev -- run app
 npm run test:unit -- run tests
 npm run build -- build for deployment
+```
+
 
 

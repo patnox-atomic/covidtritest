@@ -1,9 +1,5 @@
 package com.patnox.covidtritest.triage;
 
-import com.patnox.covidtritest.orders.Order;
-import com.patnox.covidtritest.orders.OrderRepository;
-import com.patnox.covidtritest.products.Product;
-import com.patnox.covidtritest.products.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,91 +11,44 @@ import java.util.List;
 @Service
 public class TriageService
 {
-	private final OrderRepository orderRepository;
-	private final ProductRepository productRepository;
+	private final TriageRepository triageRepository;
 
 	  @Autowired
-	  public TriageService(OrderRepository orderRepository, ProductRepository productRepository) {
-	    this.orderRepository = orderRepository;
-	    this.productRepository = productRepository;
+	  public TriageService(TriageRepository triageRepository) {
+	    this.triageRepository = triageRepository;
 	  }
 	  
-	public List<Order> getAllOrders()
+	public List<Triage> getAllOrders()
 	{
-	    return orderRepository.findAll();
+	    return triageRepository.findAll();
 	}
 	
 	//Get a specific order
-	public Order getOrder(Long orderId) 
+	public Triage getOrder(Long orderId) 
 	{
-	    return orderRepository.findById(orderId).orElseThrow(() -> new IllegalStateException("Order with ID: " + orderId + " does not exist"));
+	    return triageRepository.findById(orderId).orElseThrow(() -> new IllegalStateException("Triage with ID: " + orderId + " does not exist"));
 	}
 	
-	@Transactional
-	public void fullfillOrder(Long orderId)
+	public void addNewOrder(Triage newOrder)
 	{
-		boolean orderExists = orderRepository.existsById(orderId);
-		if(!orderExists)
-		{
-			System.err.println("Error: Order with ID: " + orderId + " does not exist");
-			throw new IllegalStateException("Order with ID: " + orderId + " does not exist");
-		}
-		else
-		{
-			System.out.println("Order with ID: " + orderId + " exists so we will proceed");
-			//search for the order by id and get order quantity and product id
-			Order selectedOrder = orderRepository.findById(orderId).orElseThrow(() -> new IllegalStateException("Order with ID: " + orderId + " does not exist"));
-			//check if order has already been fullfilled
-			if(!selectedOrder.getIs_fullfilled())
-			{
-				Long productId = selectedOrder.getProduct_id();
-				long orderQuantity = selectedOrder.getQuantity();
-				//mark order as fullfilled
-				selectedOrder.setIs_fullfilled(true);
-				//search for the product by id
-				boolean productExists = productRepository.existsById(productId);
-				if(!productExists)
-				{
-					System.err.println("Error: Product with ID: " + productId + " does not exist");
-					throw new IllegalStateException("Product with ID: " + productId + " does not exist");
-				}
-				else
-				{
-					System.out.println("Product with ID: " + productId + " exists so we will proceed");
-					Product selectedProduct = productRepository.findById(productId).orElseThrow(() -> new IllegalStateException("Product with ID: " + productId + " does not exist"));
-					//increament product quantity
-					Long currentProductQuantity = selectedProduct.getQuantity();
-					selectedProduct.setQuantity((currentProductQuantity + orderQuantity));
-				}
-			}
-			else
-			{
-				System.err.println("Error: Order with ID: " + orderId + " is already fullfilled");
-				throw new IllegalStateException("Order with ID: " + orderId + " is already fullfilled");
-			}
-		}
-	}
-	
-	public void addNewOrder(Order newOrder)
-	{
-		System.out.println("My New Order: " + newOrder);
-		orderRepository.save(newOrder);
+		System.out.println("My New Triage: " + newOrder);
+		triageRepository.save(newOrder);
 	}
 	
 	@Transactional
 	public void deleteOrder(Long orderId)
 	{
-		System.out.println("Request to delete Order ID: " + orderId);
-		boolean exists = orderRepository.existsById(orderId);
+		System.out.println("Request to delete Triage ID: " + orderId);
+		boolean exists = triageRepository.existsById(orderId);
 		if(!exists)
 		{
-			System.err.println("Error: Order with ID: " + orderId + " does not exist");
-			throw new IllegalStateException("Order with ID: " + orderId + " does not exist");
+			System.err.println("Error: Triage with ID: " + orderId + " does not exist");
+			throw new IllegalStateException("Triage with ID: " + orderId + " does not exist");
 		}
 		else
 		{
-			System.out.println("Order with ID: " + orderId + " exists so we will proceed");
-			Order victimizedOrder = orderRepository.findById(orderId).orElseThrow(() -> new IllegalStateException("Order with ID: " + orderId + " does not exist"));
+			System.out.println("Triage with ID: " + orderId + " exists so we will proceed");
+			Triage victimizedOrder = triageRepository.findById(orderId).orElseThrow(() -> new IllegalStateException("Triage with ID: " + orderId + " does not exist"));
 			victimizedOrder.setIs_deleted(true);
 		}
 	}
@@ -107,23 +56,23 @@ public class TriageService
 	@Transactional
 	public void updateOrder(Long orderId, Long product_id, Long quantity, Boolean is_fullfilled, String date_ordered, String date_fullfilled, Boolean is_deleted)
 	{
-		System.out.println("Request to update Order ID: " + orderId);
-		boolean exists = orderRepository.existsById(orderId);
+		System.out.println("Request to update Triage ID: " + orderId);
+		boolean exists = triageRepository.existsById(orderId);
 		if(!exists)
 		{
-			System.err.println("Error: Order with ID: " + orderId + " does not exist");
-			throw new IllegalStateException("Order with ID: " + orderId + " does not exist");
+			System.err.println("Error: Triage with ID: " + orderId + " does not exist");
+			throw new IllegalStateException("Triage with ID: " + orderId + " does not exist");
 		}
 		else
 		{
-			System.out.println("Order with ID: " + orderId + " exists so we will proceed");
-			Order victimizedOrder = orderRepository.findById(orderId).orElseThrow(() -> new IllegalStateException("Order with ID: " + orderId + " does not exist"));
-			Product victimizedProduct = productRepository.findById(product_id).orElseThrow(() -> new IllegalStateException("Product with ID: " + product_id + " does not exist"));
-			if(product_id != null && product_id != 0) victimizedOrder.setProduct(victimizedProduct);
-			if(quantity != null && quantity != 0) victimizedOrder.setQuantity(quantity);
-			if(is_fullfilled != null) victimizedOrder.setIs_fullfilled(is_fullfilled);
-			if(product_id != null && date_ordered.length() > 0) victimizedOrder.setDate_ordered(LocalDate.parse(date_ordered, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-			if(date_fullfilled != null && date_fullfilled.length() > 0) victimizedOrder.setDate_fullfilled(LocalDate.parse(date_fullfilled, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+			System.out.println("Triage with ID: " + orderId + " exists so we will proceed");
+			Triage victimizedOrder = triageRepository.findById(orderId).orElseThrow(() -> new IllegalStateException("Triage with ID: " + orderId + " does not exist"));
+//			Product victimizedProduct = productRepository.findById(product_id).orElseThrow(() -> new IllegalStateException("Product with ID: " + product_id + " does not exist"));
+//			if(product_id != null && product_id != 0) victimizedOrder.setProduct(victimizedProduct);
+//			if(quantity != null && quantity != 0) victimizedOrder.setQuantity(quantity);
+//			if(is_fullfilled != null) victimizedOrder.setIs_fullfilled(is_fullfilled);
+//			if(product_id != null && date_ordered.length() > 0) victimizedOrder.setDate_ordered(LocalDate.parse(date_ordered, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+//			if(date_fullfilled != null && date_fullfilled.length() > 0) victimizedOrder.setDate_fullfilled(LocalDate.parse(date_fullfilled, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 			if(is_deleted != null) victimizedOrder.setIs_deleted(is_deleted);
 		}
 	}

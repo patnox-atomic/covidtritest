@@ -1,6 +1,8 @@
 package com.patnox.covidtritest.triage;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.patnox.covidtritest.countries.Country;
+import com.patnox.covidtritest.genders.Gender;
 import com.patnox.covidtritest.patients.Patient;
 import com.patnox.covidtritest.priorities.Priority;
 import org.hibernate.annotations.DynamicInsert;
@@ -200,6 +202,56 @@ public class Triage
 
 	public void setDate_of_triage(LocalDate date_of_triage) {
 		this.date_of_triage = date_of_triage;
+	}
+
+	public Long getPatient_id()
+	{
+		if(patient != null)
+		{
+			return patient.getId();
+		}
+		else
+		{
+			return(-1L);
+		}
+	}
+
+	public void setPatient_id(Long patient_id)
+	{
+		if(patient != null)
+		{
+			patient.setId(patient_id);
+		}
+		else
+		{
+			patient = new Patient();
+			patient.setId(patient_id);
+		}
+	}
+
+	public Long getPriority_id()
+	{
+		if(priority != null)
+		{
+			return priority.getId();
+		}
+		else
+		{
+			return(-1L);
+		}
+	}
+
+	public void setPriority_id(Long priority_id)
+	{
+		if(priority != null)
+		{
+			priority.setId(priority_id);
+		}
+		else
+		{
+			priority = new Priority();
+			priority.setId(priority_id);
+		}
 	}
 
 	public Boolean getIs_deleted() {

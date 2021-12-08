@@ -226,6 +226,56 @@ public class Patient
 		this.date_registered = date_registered;
 	}
 
+	public Long getCountry_id()
+	{
+		if(country != null)
+		{
+			return country.getId();
+		}
+		else
+		{
+			return(-1L);
+		}
+	}
+
+	public void setCountry_id(Long country_id)
+	{
+		if(country != null)
+		{
+			country.setId(country_id);
+		}
+		else
+		{
+			country = new Country();
+			country.setId(country_id);
+		}
+	}
+
+	public Long getGender_id()
+	{
+		if(gender != null)
+		{
+			return gender.getId();
+		}
+		else
+		{
+			return(-1L);
+		}
+	}
+
+	public void setGender_id(Long gender_id)
+	{
+		if(gender != null)
+		{
+			gender.setId(gender_id);
+		}
+		else
+		{
+			gender = new Gender();
+			gender.setId(gender_id);
+		}
+	}
+
 	public Boolean getIs_deleted() {
 		return is_deleted;
 	}

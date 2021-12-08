@@ -1,49 +1,41 @@
 package com.patnox.covidtritest.triage;
 
-import com.patnox.covidtritest.orders.Order;
-import com.patnox.covidtritest.orders.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/order")
+@RequestMapping(path = "api/v1/triage")
 public class TriageController {
 
-	private final OrderService orderService;
+	private final TriageService triageService;
 
 	@Autowired
-	public TriageController(OrderService orderService) {
-		this.orderService = orderService;
+	public TriageController(TriageService triageService) {
+		this.triageService = triageService;
 	}
 
 	@GetMapping
-	public List<Order> getAll() {
-		return orderService.getAllOrders();
+	public List<Triage> getAll() {
+		return triageService.getAllOrders();
 	}
 	
 	@GetMapping(path = "{orderId}")
-	public Order getOrder(@PathVariable("orderId") Long orderId) {
-		return orderService.getOrder(orderId);
+	public Triage getOrder(@PathVariable("orderId") Long orderId) {
+		return triageService.getOrder(orderId);
 	}
 	
 	@PostMapping
-	public void createNewOrder(@RequestBody Order newOrder)
+	public void createNewOrder(@RequestBody Triage newOrder)
 	{
-		orderService.addNewOrder(newOrder);
-	}
-	
-	@PostMapping("/fullfill")
-	public void fullfillOrder(@RequestParam(required = true) Long orderId)
-	{
-		orderService.fullfillOrder(orderId);
+		triageService.addNewOrder(newOrder);
 	}
 	
 	@DeleteMapping(path = "{orderId}")
 	public void deleteOrder(@PathVariable("orderId") Long orderId)
 	{
-		orderService.deleteOrder(orderId);
+		triageService.deleteOrder(orderId);
 	}
 	
 	@PutMapping(path = "{orderId}")
@@ -56,7 +48,7 @@ public class TriageController {
 				@RequestParam(required = false) Boolean is_deleted
 			)
 	{
-		orderService.updateOrder(orderId, product_id, quantity, is_fullfilled, date_ordered, date_fullfilled, is_deleted);
+		triageService.updateOrder(orderId, product_id, quantity, is_fullfilled, date_ordered, date_fullfilled, is_deleted);
 	}
 	
 }

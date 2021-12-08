@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/order")
+@RequestMapping(path = "api/v1/patient")
 public class PatientController {
 
 	private final PatientService patientService;
@@ -30,12 +30,6 @@ public class PatientController {
 	public void createNewOrder(@RequestBody Patient newOrder)
 	{
 		patientService.addNewOrder(newOrder);
-	}
-	
-	@PostMapping("/fullfill")
-	public void fullfillOrder(@RequestParam(required = true) Long orderId)
-	{
-		patientService.fullfillOrder(orderId);
 	}
 	
 	@DeleteMapping(path = "{orderId}")
