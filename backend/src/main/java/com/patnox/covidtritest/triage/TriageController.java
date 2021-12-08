@@ -18,28 +18,39 @@ public class TriageController {
 
 	@GetMapping
 	public List<Triage> getAll() {
-		return triageService.getAllOrders();
+		return triageService.getAllTriages();
+	}
+
+	@GetMapping("/queue")
+	public List<Triage> getQueue() {
+		return triageService.getQueue();
 	}
 	
 	@GetMapping(path = "{orderId}")
-	public Triage getOrder(@PathVariable("orderId") Long orderId) {
-		return triageService.getOrder(orderId);
+	public Triage getTriage(@PathVariable("orderId") Long orderId) {
+		return triageService.getTriage(orderId);
+	}
+
+	@PostMapping("/treat")
+	public void treatPatient(@RequestParam(required = true) Long triageId)
+	{
+		triageService.treatPatient(triageId);
 	}
 	
 	@PostMapping
-	public void createNewOrder(@RequestBody Triage newOrder)
+	public void createNewTriage(@RequestBody Triage newTriage)
 	{
-		triageService.addNewOrder(newOrder);
+		triageService.addNewTriage(newTriage);
 	}
 	
-	@DeleteMapping(path = "{orderId}")
-	public void deleteOrder(@PathVariable("orderId") Long orderId)
+	@DeleteMapping(path = "{triageId}")
+	public void deleteTriage(@PathVariable("triageId") Long triageId)
 	{
-		triageService.deleteOrder(orderId);
+		triageService.deleteTriage(triageId);
 	}
 	
-	@PutMapping(path = "{orderId}")
-	public void updateOrder(@PathVariable("orderId") Long orderId,
+	@PutMapping(path = "{triageId}")
+	public void updateTriage(@PathVariable("triageId") Long triageId,
 				@RequestParam(required = false) Long product_id,
 				@RequestParam(required = false) Long quantity,
 				@RequestParam(required = false) Boolean is_fullfilled,
@@ -48,7 +59,7 @@ public class TriageController {
 				@RequestParam(required = false) Boolean is_deleted
 			)
 	{
-		triageService.updateOrder(orderId, product_id, quantity, is_fullfilled, date_ordered, date_fullfilled, is_deleted);
+		triageService.updateTriage(triageId, product_id, quantity, is_fullfilled, date_ordered, date_fullfilled, is_deleted);
 	}
 	
 }

@@ -2,7 +2,7 @@
   <v-app id="inspire">
     <v-app-bar app color="white" flat>
       <v-container class="py-0 fill-height">
-        <h1>Register To Evron Foods</h1>
+        <h1>Register To CDC Kenya</h1>
         <v-spacer></v-spacer>
         <v-responsive max-width="260"> </v-responsive>
       </v-container>

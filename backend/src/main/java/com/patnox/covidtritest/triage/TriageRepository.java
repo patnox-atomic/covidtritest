@@ -16,4 +16,6 @@ public interface TriageRepository extends JpaRepository<Triage, Long>
 //	@Query("SELECT s FROM orders s WHERE s.product.id = ?1 and is_fullfilled = false")
 //	//Optional<Triage> findUnfulfilledOrderByProduct(long id);
 //	List<Triage> findUnfulfilledOrderByProduct(long id);
+    @Query("SELECT s FROM triage s where is_treated = false Order by priority.rank asc, id asc")
+	List<Triage> getTriageQueue();
 }

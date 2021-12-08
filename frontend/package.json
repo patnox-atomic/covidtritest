@@ -1,6 +1,6 @@
 {
-  "name": "supermarketclient",
-  "version": "1.2.3",
+  "name": "covidtritestclient",
+  "version": "5.7.3",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

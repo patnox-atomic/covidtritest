@@ -18,25 +18,58 @@ public class TriageService
 	    this.triageRepository = triageRepository;
 	  }
 	  
-	public List<Triage> getAllOrders()
+	public List<Triage> getAllTriages()
 	{
 	    return triageRepository.findAll();
 	}
+
+	public List<Triage> getQueue()
+	{
+		return triageRepository.getTriageQueue();
+	}
 	
 	//Get a specific order
-	public Triage getOrder(Long orderId) 
+	public Triage getTriage(Long orderId)
 	{
 	    return triageRepository.findById(orderId).orElseThrow(() -> new IllegalStateException("Triage with ID: " + orderId + " does not exist"));
 	}
+
+	@Transactional
+	public void treatPatient(Long triageId)
+	{
+		boolean orderExists = triageRepository.existsById(triageId);
+		if(!orderExists)
+		{
+			System.err.println("Error: Triage with ID: " + triageId + " does not exist");
+			throw new IllegalStateException("Triage with ID: " + triageId + " does not exist");
+		}
+		else
+		{
+			System.out.println("Triage with ID: " + triageId + " exists so we will proceed");
+			//search for the Triage
+			Triage selectedTriage = triageRepository.findById(triageId).orElseThrow(() -> new IllegalStateException("Order with ID: " + triageId + " does not exist"));
+			//check if order has already been fullfilled
+			if(!selectedTriage.getIs_treated())
+			{
+				//mark Triage as treated
+				selectedTriage.setIs_treated(true);
+			}
+			else
+			{
+				System.err.println("Error: Triage with ID: " + triageId + " is already treated");
+				throw new IllegalStateException("Order with ID: " + triageId + " is already treated");
+			}
+		}
+	}
 	
-	public void addNewOrder(Triage newOrder)
+	public void addNewTriage(Triage newOrder)
 	{
 		System.out.println("My New Triage: " + newOrder);
 		triageRepository.save(newOrder);
 	}
 	
 	@Transactional
-	public void deleteOrder(Long orderId)
+	public void deleteTriage(Long orderId)
 	{
 		System.out.println("Request to delete Triage ID: " + orderId);
 		boolean exists = triageRepository.existsById(orderId);
@@ -54,7 +87,7 @@ public class TriageService
 	}
 	
 	@Transactional
-	public void updateOrder(Long orderId, Long product_id, Long quantity, Boolean is_fullfilled, String date_ordered, String date_fullfilled, Boolean is_deleted)
+	public void updateTriage(Long orderId, Long product_id, Long quantity, Boolean is_fullfilled, String date_ordered, String date_fullfilled, Boolean is_deleted)
 	{
 		System.out.println("Request to update Triage ID: " + orderId);
 		boolean exists = triageRepository.existsById(orderId);

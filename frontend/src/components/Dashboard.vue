@@ -4,9 +4,9 @@
       <v-container class="py-0 fill-height">
         
         <!-- Menu Buttons -->
-        <v-btn v-if="getUserRole(['SUPERUSER_ROLE', 'RETAIL_ATTENDANT_ROLE', 'WAREHOUSE_ATTENDANT_ROLE'])" to="/order" text>Patients</v-btn>
-        <v-btn v-if="getUserRole(['SUPERUSER_ROLE', 'RETAIL_ATTENDANT_ROLE'])" to="/product" text>Triage</v-btn>
-        <v-btn v-if="getUserRole(['SUPERUSER_ROLE', 'RETAIL_ATTENDANT_ROLE'])" to="/sale" text>Reports</v-btn>
+        <v-btn v-if="getUserRole(['SUPERUSER_ROLE', 'RETAIL_ATTENDANT_ROLE', 'WAREHOUSE_ATTENDANT_ROLE'])" to="/patient" text>Patients</v-btn>
+        <v-btn v-if="getUserRole(['SUPERUSER_ROLE', 'RETAIL_ATTENDANT_ROLE'])" to="/triage" text>Triage</v-btn>
+        <v-btn v-if="getUserRole(['SUPERUSER_ROLE', 'RETAIL_ATTENDANT_ROLE'])" to="/queue" text>Queue</v-btn>
         <v-btn v-if="getUserRole(['SUPERUSER_ROLE'])" to="/user" text>Users</v-btn>
         <v-btn @click.prevent="logout" text>Logout</v-btn>
         <v-spacer></v-spacer>

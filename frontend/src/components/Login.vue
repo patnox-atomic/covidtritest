@@ -138,7 +138,7 @@ export default {
   },
   metaInfo () {
     return {
-      title: 'Evron Foods | Login'
+      title: 'CDC Kenya | Login'
     }
   }
 }

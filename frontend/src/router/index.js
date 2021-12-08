@@ -2,9 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Dashboard from '../components/Dashboard.vue'
 import Intro from '../components/Intro.vue'
-import Order from '../components/Order.vue'
-import Product from '../components/Product.vue'
-import Sale from '../components/Sale.vue'
+import Patient from '../components/Patient.vue'
+import Triage from '../components/Triage.vue'
+import Queue from '../components/Queue.vue'
 import User from '../components/User.vue'
 import Login from '../components/Login.vue'
 import Register from '../components/Register.vue'
@@ -32,28 +32,28 @@ const routes = [
         component: Intro
       },
       {
-        path: 'order',
+        path: 'patient',
         meta: {
-          name: 'Order',
+          name: 'Patient',
           requiresAuth: true
         },
-        component: Order
+        component: Patient
       },
       {
-        path: 'product',
+        path: 'triage',
         meta: {
-          name: 'Product',
+          name: 'Triage',
           requiresAuth: true
         },
-        component: Product
+        component: Triage
       },
       {
-        path: 'sale',
+        path: 'queue',
         meta: {
-          name: 'Sale',
+          name: 'Queue',
           requiresAuth: true
         },
-        component: Sale
+        component: Queue
       },
       {
         path: 'user',
