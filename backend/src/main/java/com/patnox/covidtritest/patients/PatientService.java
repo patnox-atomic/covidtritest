@@ -18,55 +18,55 @@ public class PatientService
 	    this.patientRepository = patientRepository;
 	  }
 	  
-	public List<Patient> getAllOrders()
+	public List<Patient> getAllPatients()
 	{
 	    return patientRepository.findAll();
 	}
 	
-	//Get a specific order
-	public Patient getOrder(Long orderId) 
+	//Get a specific patient
+	public Patient getPatient(Long patientId)
 	{
-	    return patientRepository.findById(orderId).orElseThrow(() -> new IllegalStateException("Patient with ID: " + orderId + " does not exist"));
+	    return patientRepository.findById(patientId).orElseThrow(() -> new IllegalStateException("Patient with ID: " + patientId + " does not exist"));
 	}
 	
-	public void addNewOrder(Patient newOrder)
+	public void addNewPatient(Patient newPatient)
 	{
-		System.out.println("My New Patient: " + newOrder);
-		patientRepository.save(newOrder);
+		System.out.println("My New Patient: " + newPatient);
+		patientRepository.save(newPatient);
 	}
 	
 	@Transactional
-	public void deleteOrder(Long orderId)
+	public void deletePatient(Long patientId)
 	{
-		System.out.println("Request to delete Patient ID: " + orderId);
-		boolean exists = patientRepository.existsById(orderId);
+		System.out.println("Request to delete Patient ID: " + patientId);
+		boolean exists = patientRepository.existsById(patientId);
 		if(!exists)
 		{
-			System.err.println("Error: Patient with ID: " + orderId + " does not exist");
-			throw new IllegalStateException("Patient with ID: " + orderId + " does not exist");
+			System.err.println("Error: Patient with ID: " + patientId + " does not exist");
+			throw new IllegalStateException("Patient with ID: " + patientId + " does not exist");
 		}
 		else
 		{
-			System.out.println("Patient with ID: " + orderId + " exists so we will proceed");
-			Patient victimizedOrder = patientRepository.findById(orderId).orElseThrow(() -> new IllegalStateException("Patient with ID: " + orderId + " does not exist"));
+			System.out.println("Patient with ID: " + patientId + " exists so we will proceed");
+			Patient victimizedOrder = patientRepository.findById(patientId).orElseThrow(() -> new IllegalStateException("Patient with ID: " + patientId + " does not exist"));
 			victimizedOrder.setIs_deleted(true);
 		}
 	}
 	
 	@Transactional
-	public void updateOrder(Long orderId, Long product_id, Long quantity, Boolean is_fullfilled, String date_ordered, String date_fullfilled, Boolean is_deleted)
+	public void updatePatient(Long patientId, Long product_id, Long quantity, Boolean is_fullfilled, String date_ordered, String date_fullfilled, Boolean is_deleted)
 	{
-		System.out.println("Request to update Patient ID: " + orderId);
-		boolean exists = patientRepository.existsById(orderId);
+		System.out.println("Request to update Patient ID: " + patientId);
+		boolean exists = patientRepository.existsById(patientId);
 		if(!exists)
 		{
-			System.err.println("Error: Patient with ID: " + orderId + " does not exist");
-			throw new IllegalStateException("Patient with ID: " + orderId + " does not exist");
+			System.err.println("Error: Patient with ID: " + patientId + " does not exist");
+			throw new IllegalStateException("Patient with ID: " + patientId + " does not exist");
 		}
 		else
 		{
-			System.out.println("Patient with ID: " + orderId + " exists so we will proceed");
-			Patient victimizedOrder = patientRepository.findById(orderId).orElseThrow(() -> new IllegalStateException("Patient with ID: " + orderId + " does not exist"));
+			System.out.println("Patient with ID: " + patientId + " exists so we will proceed");
+			Patient victimizedOrder = patientRepository.findById(patientId).orElseThrow(() -> new IllegalStateException("Patient with ID: " + patientId + " does not exist"));
 			//Product victimizedProduct = productRepository.findById(product_id).orElseThrow(() -> new IllegalStateException("Product with ID: " + product_id + " does not exist"));
 			//if(product_id != null && product_id != 0) victimizedOrder.setProduct(victimizedProduct);
 //			if(quantity != null && quantity != 0) victimizedOrder.setQuantity(quantity);

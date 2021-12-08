@@ -10,10 +10,5 @@ import java.util.Optional;
 @Repository
 public interface CountryRepository extends JpaRepository<Country, Long>
 {
-//	@Query("SELECT s FROM orders s WHERE s.product.id = ?1")
-//	Optional<Country> findOrderByProduct(long id);
-//
-//	@Query("SELECT s FROM orders s WHERE s.product.id = ?1 and is_fullfilled = false")
-//	//Optional<Order> findUnfulfilledOrderByProduct(long id);
-//	List<Country> findUnfulfilledOrderByProduct(long id);
+    //custom queries
 }

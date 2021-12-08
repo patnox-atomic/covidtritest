@@ -18,55 +18,55 @@ public class PriorityService
 	    this.priorityRepository = priorityRepository;
 	  }
 	  
-	public List<Priority> getAllOrders()
+	public List<Priority> getAllPriorities()
 	{
 	    return priorityRepository.findAll();
 	}
 	
-	//Get a specific order
-	public Priority getOrder(Long orderId) 
+	//Get a specific priority
+	public Priority getPriority(Long priorityId)
 	{
-	    return priorityRepository.findById(orderId).orElseThrow(() -> new IllegalStateException("Priority with ID: " + orderId + " does not exist"));
+	    return priorityRepository.findById(priorityId).orElseThrow(() -> new IllegalStateException("Priority with ID: " + priorityId + " does not exist"));
 	}
 	
-	public void addNewOrder(Priority newOrder)
+	public void addNewPriority(Priority newPriority)
 	{
-		System.out.println("My New Priority: " + newOrder);
-		priorityRepository.save(newOrder);
+		System.out.println("My New Priority: " + newPriority);
+		priorityRepository.save(newPriority);
 	}
 	
 	@Transactional
-	public void deleteOrder(Long orderId)
+	public void deletePriority(Long priorityId)
 	{
-		System.out.println("Request to delete Priority ID: " + orderId);
-		boolean exists = priorityRepository.existsById(orderId);
+		System.out.println("Request to delete Priority ID: " + priorityId);
+		boolean exists = priorityRepository.existsById(priorityId);
 		if(!exists)
 		{
-			System.err.println("Error: Priority with ID: " + orderId + " does not exist");
-			throw new IllegalStateException("Priority with ID: " + orderId + " does not exist");
+			System.err.println("Error: Priority with ID: " + priorityId + " does not exist");
+			throw new IllegalStateException("Priority with ID: " + priorityId + " does not exist");
 		}
 		else
 		{
-			System.out.println("Priority with ID: " + orderId + " exists so we will proceed");
-			Priority victimizedOrder = priorityRepository.findById(orderId).orElseThrow(() -> new IllegalStateException("Priority with ID: " + orderId + " does not exist"));
+			System.out.println("Priority with ID: " + priorityId + " exists so we will proceed");
+			Priority victimizedOrder = priorityRepository.findById(priorityId).orElseThrow(() -> new IllegalStateException("Priority with ID: " + priorityId + " does not exist"));
 			victimizedOrder.setIs_deleted(true);
 		}
 	}
 	
 	@Transactional
-	public void updateOrder(Long orderId, Long product_id, Long quantity, Boolean is_fullfilled, String date_ordered, String date_fullfilled, Boolean is_deleted)
+	public void updatePriority(Long priorityId, Long product_id, Long quantity, Boolean is_fullfilled, String date_ordered, String date_fullfilled, Boolean is_deleted)
 	{
-		System.out.println("Request to update Priority ID: " + orderId);
-		boolean exists = priorityRepository.existsById(orderId);
+		System.out.println("Request to update Priority ID: " + priorityId);
+		boolean exists = priorityRepository.existsById(priorityId);
 		if(!exists)
 		{
-			System.err.println("Error: Priority with ID: " + orderId + " does not exist");
-			throw new IllegalStateException("Priority with ID: " + orderId + " does not exist");
+			System.err.println("Error: Priority with ID: " + priorityId + " does not exist");
+			throw new IllegalStateException("Priority with ID: " + priorityId + " does not exist");
 		}
 		else
 		{
-			System.out.println("Priority with ID: " + orderId + " exists so we will proceed");
-			Priority victimizedOrder = priorityRepository.findById(orderId).orElseThrow(() -> new IllegalStateException("Priority with ID: " + orderId + " does not exist"));
+			System.out.println("Priority with ID: " + priorityId + " exists so we will proceed");
+			Priority victimizedOrder = priorityRepository.findById(priorityId).orElseThrow(() -> new IllegalStateException("Priority with ID: " + priorityId + " does not exist"));
 			//Product victimizedProduct = productRepository.findById(product_id).orElseThrow(() -> new IllegalStateException("Product with ID: " + product_id + " does not exist"));
 			//if(product_id != null && product_id != 0) victimizedOrder.setProduct(victimizedProduct);
 //			if(quantity != null && quantity != 0) victimizedOrder.setQuantity(quantity);

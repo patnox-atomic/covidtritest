@@ -19,28 +19,28 @@ public class GenderController
 
 	@GetMapping
 	public List<Gender> getAll() {
-		return genderService.getAllOrders();
+		return genderService.getAllGenders();
 	}
 	
-	@GetMapping(path = "{orderId}")
-	public Gender getOrder(@PathVariable("orderId") Long orderId) {
-		return genderService.getOrder(orderId);
+	@GetMapping(path = "{genderId}")
+	public Gender getOrder(@PathVariable("genderId") Long genderId) {
+		return genderService.getGender(genderId);
 	}
 	
 	@PostMapping
 	public void createNewOrder(@RequestBody Gender newOrder)
 	{
-		genderService.addNewOrder(newOrder);
+		genderService.addNewGender(newOrder);
 	}
 	
-	@DeleteMapping(path = "{orderId}")
-	public void deleteOrder(@PathVariable("orderId") Long orderId)
+	@DeleteMapping(path = "{genderId}")
+	public void deleteOrder(@PathVariable("genderId") Long genderId)
 	{
-		genderService.deleteOrder(orderId);
+		genderService.deleteGender(genderId);
 	}
 	
-	@PutMapping(path = "{orderId}")
-	public void updateOrder(@PathVariable("orderId") Long orderId,
+	@PutMapping(path = "{genderId}")
+	public void updateOrder(@PathVariable("genderId") Long genderId,
 				@RequestParam(required = false) Long product_id,
 				@RequestParam(required = false) Long quantity,
 				@RequestParam(required = false) Boolean is_fullfilled,
@@ -49,7 +49,7 @@ public class GenderController
 				@RequestParam(required = false) Boolean is_deleted
 			)
 	{
-		genderService.updateOrder(orderId, product_id, quantity, is_fullfilled, date_ordered, date_fullfilled, is_deleted);
+		genderService.updateGender(genderId, product_id, quantity, is_fullfilled, date_ordered, date_fullfilled, is_deleted);
 	}
 	
 }

@@ -18,55 +18,55 @@ public class GenderService
 	    this.genderRepository = genderRepository;
 	  }
 	  
-	public List<Gender> getAllOrders()
+	public List<Gender> getAllGenders()
 	{
 	    return genderRepository.findAll();
 	}
 	
-	//Get a specific order
-	public Gender getOrder(Long orderId) 
+	//Get a specific gender
+	public Gender getGender(Long genderId)
 	{
-	    return genderRepository.findById(orderId).orElseThrow(() -> new IllegalStateException("Gender with ID: " + orderId + " does not exist"));
+	    return genderRepository.findById(genderId).orElseThrow(() -> new IllegalStateException("Gender with ID: " + genderId + " does not exist"));
 	}
 	
-	public void addNewOrder(Gender newOrder)
+	public void addNewGender(Gender newGender)
 	{
-		System.out.println("My New Gender: " + newOrder);
-		genderRepository.save(newOrder);
+		System.out.println("My New Gender: " + newGender);
+		genderRepository.save(newGender);
 	}
 	
 	@Transactional
-	public void deleteOrder(Long orderId)
+	public void deleteGender(Long genderId)
 	{
-		System.out.println("Request to delete Gender ID: " + orderId);
-		boolean exists = genderRepository.existsById(orderId);
+		System.out.println("Request to delete Gender ID: " + genderId);
+		boolean exists = genderRepository.existsById(genderId);
 		if(!exists)
 		{
-			System.err.println("Error: Gender with ID: " + orderId + " does not exist");
-			throw new IllegalStateException("Gender with ID: " + orderId + " does not exist");
+			System.err.println("Error: Gender with ID: " + genderId + " does not exist");
+			throw new IllegalStateException("Gender with ID: " + genderId + " does not exist");
 		}
 		else
 		{
-			System.out.println("Gender with ID: " + orderId + " exists so we will proceed");
-			Gender victimizedOrder = genderRepository.findById(orderId).orElseThrow(() -> new IllegalStateException("Gender with ID: " + orderId + " does not exist"));
+			System.out.println("Gender with ID: " + genderId + " exists so we will proceed");
+			Gender victimizedOrder = genderRepository.findById(genderId).orElseThrow(() -> new IllegalStateException("Gender with ID: " + genderId + " does not exist"));
 			victimizedOrder.setIs_deleted(true);
 		}
 	}
 	
 	@Transactional
-	public void updateOrder(Long orderId, Long product_id, Long quantity, Boolean is_fullfilled, String date_ordered, String date_fullfilled, Boolean is_deleted)
+	public void updateGender(Long genderId, Long product_id, Long quantity, Boolean is_fullfilled, String date_ordered, String date_fullfilled, Boolean is_deleted)
 	{
-		System.out.println("Request to update Gender ID: " + orderId);
-		boolean exists = genderRepository.existsById(orderId);
+		System.out.println("Request to update Gender ID: " + genderId);
+		boolean exists = genderRepository.existsById(genderId);
 		if(!exists)
 		{
-			System.err.println("Error: Gender with ID: " + orderId + " does not exist");
-			throw new IllegalStateException("Gender with ID: " + orderId + " does not exist");
+			System.err.println("Error: Gender with ID: " + genderId + " does not exist");
+			throw new IllegalStateException("Gender with ID: " + genderId + " does not exist");
 		}
 		else
 		{
-			System.out.println("Gender with ID: " + orderId + " exists so we will proceed");
-			Gender victimizedOrder = genderRepository.findById(orderId).orElseThrow(() -> new IllegalStateException("Gender with ID: " + orderId + " does not exist"));
+			System.out.println("Gender with ID: " + genderId + " exists so we will proceed");
+			Gender victimizedOrder = genderRepository.findById(genderId).orElseThrow(() -> new IllegalStateException("Gender with ID: " + genderId + " does not exist"));
 			//Product victimizedProduct = productRepository.findById(product_id).orElseThrow(() -> new IllegalStateException("Product with ID: " + product_id + " does not exist"));
 			//if(product_id != null && product_id != 0) victimizedOrder.setProduct(victimizedProduct);
 //			if(quantity != null && quantity != 0) victimizedOrder.setQuantity(quantity);

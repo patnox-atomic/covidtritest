@@ -95,7 +95,8 @@
         <v-data-table
             :headers="headers"
             :items="patients"
-            sort-by="id"
+            :sort-by="['id',]"
+            :sort-desc="[true,]"
             class="elevation-1"
         >
         </v-data-table>

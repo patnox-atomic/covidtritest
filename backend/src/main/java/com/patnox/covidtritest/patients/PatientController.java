@@ -18,28 +18,28 @@ public class PatientController {
 
 	@GetMapping
 	public List<Patient> getAll() {
-		return patientService.getAllOrders();
+		return patientService.getAllPatients();
 	}
 	
-	@GetMapping(path = "{orderId}")
-	public Patient getOrder(@PathVariable("orderId") Long orderId) {
-		return patientService.getOrder(orderId);
+	@GetMapping(path = "{patientId}")
+	public Patient getOrder(@PathVariable("patientId") Long patientId) {
+		return patientService.getPatient(patientId);
 	}
 	
 	@PostMapping
 	public void createNewOrder(@RequestBody Patient newOrder)
 	{
-		patientService.addNewOrder(newOrder);
+		patientService.addNewPatient(newOrder);
 	}
 	
-	@DeleteMapping(path = "{orderId}")
-	public void deleteOrder(@PathVariable("orderId") Long orderId)
+	@DeleteMapping(path = "{patientId}")
+	public void deleteOrder(@PathVariable("patientId") Long patientId)
 	{
-		patientService.deleteOrder(orderId);
+		patientService.deletePatient(patientId);
 	}
 	
-	@PutMapping(path = "{orderId}")
-	public void updateOrder(@PathVariable("orderId") Long orderId,
+	@PutMapping(path = "{patientId}")
+	public void updateOrder(@PathVariable("patientId") Long patientId,
 				@RequestParam(required = false) Long product_id,
 				@RequestParam(required = false) Long quantity,
 				@RequestParam(required = false) Boolean is_fullfilled,
@@ -48,7 +48,7 @@ public class PatientController {
 				@RequestParam(required = false) Boolean is_deleted
 			)
 	{
-		patientService.updateOrder(orderId, product_id, quantity, is_fullfilled, date_ordered, date_fullfilled, is_deleted);
+		patientService.updatePatient(patientId, product_id, quantity, is_fullfilled, date_ordered, date_fullfilled, is_deleted);
 	}
 	
 }

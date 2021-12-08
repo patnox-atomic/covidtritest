@@ -26,9 +26,9 @@ public class TriageController {
 		return triageService.getQueue();
 	}
 	
-	@GetMapping(path = "{orderId}")
-	public Triage getTriage(@PathVariable("orderId") Long orderId) {
-		return triageService.getTriage(orderId);
+	@GetMapping(path = "{triageId}")
+	public Triage getTriage(@PathVariable("triageId") Long triageId) {
+		return triageService.getTriage(triageId);
 	}
 
 	@PostMapping("/treat")

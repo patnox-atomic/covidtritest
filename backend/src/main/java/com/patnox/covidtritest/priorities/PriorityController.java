@@ -19,28 +19,28 @@ public class PriorityController
 
 	@GetMapping
 	public List<Priority> getAll() {
-		return priorityService.getAllOrders();
+		return priorityService.getAllPriorities();
 	}
 	
-	@GetMapping(path = "{orderId}")
-	public Priority getOrder(@PathVariable("orderId") Long orderId) {
-		return priorityService.getOrder(orderId);
+	@GetMapping(path = "{priorityId}")
+	public Priority getOrder(@PathVariable("priorityId") Long priorityId) {
+		return priorityService.getPriority(priorityId);
 	}
 	
 	@PostMapping
 	public void createNewOrder(@RequestBody Priority newOrder)
 	{
-		priorityService.addNewOrder(newOrder);
+		priorityService.addNewPriority(newOrder);
 	}
 	
-	@DeleteMapping(path = "{orderId}")
-	public void deleteOrder(@PathVariable("orderId") Long orderId)
+	@DeleteMapping(path = "{priorityId}")
+	public void deleteOrder(@PathVariable("priorityId") Long priorityId)
 	{
-		priorityService.deleteOrder(orderId);
+		priorityService.deletePriority(priorityId);
 	}
 	
-	@PutMapping(path = "{orderId}")
-	public void updateOrder(@PathVariable("orderId") Long orderId,
+	@PutMapping(path = "{priorityId}")
+	public void updateOrder(@PathVariable("priorityId") Long priorityId,
 				@RequestParam(required = false) Long product_id,
 				@RequestParam(required = false) Long quantity,
 				@RequestParam(required = false) Boolean is_fullfilled,
@@ -49,7 +49,7 @@ public class PriorityController
 				@RequestParam(required = false) Boolean is_deleted
 			)
 	{
-		priorityService.updateOrder(orderId, product_id, quantity, is_fullfilled, date_ordered, date_fullfilled, is_deleted);
+		priorityService.updatePriority(priorityId, product_id, quantity, is_fullfilled, date_ordered, date_fullfilled, is_deleted);
 	}
 	
 }

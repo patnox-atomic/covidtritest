@@ -19,28 +19,28 @@ public class CountryController
 
 	@GetMapping
 	public List<Country> getAll() {
-		return countryService.getAllOrders();
+		return countryService.getAllCountries();
 	}
 	
-	@GetMapping(path = "{orderId}")
-	public Country getOrder(@PathVariable("orderId") Long orderId) {
-		return countryService.getOrder(orderId);
+	@GetMapping(path = "{countryId}")
+	public Country getOrder(@PathVariable("countryId") Long countryId) {
+		return countryService.getCountry(countryId);
 	}
 	
 	@PostMapping
 	public void createNewOrder(@RequestBody Country newOrder)
 	{
-		countryService.addNewOrder(newOrder);
+		countryService.addNewCountry(newOrder);
 	}
 	
-	@DeleteMapping(path = "{orderId}")
-	public void deleteOrder(@PathVariable("orderId") Long orderId)
+	@DeleteMapping(path = "{countryId}")
+	public void deleteOrder(@PathVariable("countryId") Long countryId)
 	{
-		countryService.deleteOrder(orderId);
+		countryService.deleteCountry(countryId);
 	}
 	
-	@PutMapping(path = "{orderId}")
-	public void updateOrder(@PathVariable("orderId") Long orderId,
+	@PutMapping(path = "{countryId}")
+	public void updateOrder(@PathVariable("countryId") Long countryId,
 				@RequestParam(required = false) Long product_id,
 				@RequestParam(required = false) Long quantity,
 				@RequestParam(required = false) Boolean is_fullfilled,
@@ -49,7 +49,7 @@ public class CountryController
 				@RequestParam(required = false) Boolean is_deleted
 			)
 	{
-		countryService.updateOrder(orderId, product_id, quantity, is_fullfilled, date_ordered, date_fullfilled, is_deleted);
+		countryService.updateCountry(countryId, product_id, quantity, is_fullfilled, date_ordered, date_fullfilled, is_deleted);
 	}
 	
 }

@@ -18,55 +18,55 @@ public class CountryService
 	    this.countryRepository = countryRepository;
 	  }
 	  
-	public List<Country> getAllOrders()
+	public List<Country> getAllCountries()
 	{
 	    return countryRepository.findAll();
 	}
 	
-	//Get a specific order
-	public Country getOrder(Long orderId)
+	//Get a specific Country
+	public Country getCountry(Long countryId)
 	{
-	    return countryRepository.findById(orderId).orElseThrow(() -> new IllegalStateException("Country with ID: " + orderId + " does not exist"));
+	    return countryRepository.findById(countryId).orElseThrow(() -> new IllegalStateException("Country with ID: " + countryId + " does not exist"));
 	}
 	
-	public void addNewOrder(Country newOrder)
+	public void addNewCountry(Country newCountry)
 	{
-		System.out.println("My New Country: " + newOrder);
-		countryRepository.save(newOrder);
+		System.out.println("My New Country: " + newCountry);
+		countryRepository.save(newCountry);
 	}
 	
 	@Transactional
-	public void deleteOrder(Long orderId)
+	public void deleteCountry(Long countryId)
 	{
-		System.out.println("Request to delete Country ID: " + orderId);
-		boolean exists = countryRepository.existsById(orderId);
+		System.out.println("Request to delete Country ID: " + countryId);
+		boolean exists = countryRepository.existsById(countryId);
 		if(!exists)
 		{
-			System.err.println("Error: Country with ID: " + orderId + " does not exist");
-			throw new IllegalStateException("Country with ID: " + orderId + " does not exist");
+			System.err.println("Error: Country with ID: " + countryId + " does not exist");
+			throw new IllegalStateException("Country with ID: " + countryId + " does not exist");
 		}
 		else
 		{
-			System.out.println("Country with ID: " + orderId + " exists so we will proceed");
-			Country victimizedOrder = countryRepository.findById(orderId).orElseThrow(() -> new IllegalStateException("Country with ID: " + orderId + " does not exist"));
+			System.out.println("Country with ID: " + countryId + " exists so we will proceed");
+			Country victimizedOrder = countryRepository.findById(countryId).orElseThrow(() -> new IllegalStateException("Country with ID: " + countryId + " does not exist"));
 			victimizedOrder.setIs_deleted(true);
 		}
 	}
 	
 	@Transactional
-	public void updateOrder(Long orderId, Long product_id, Long quantity, Boolean is_fullfilled, String date_ordered, String date_fullfilled, Boolean is_deleted)
+	public void updateCountry(Long countryId, Long product_id, Long quantity, Boolean is_fullfilled, String date_ordered, String date_fullfilled, Boolean is_deleted)
 	{
-		System.out.println("Request to update Country ID: " + orderId);
-		boolean exists = countryRepository.existsById(orderId);
+		System.out.println("Request to update Country ID: " + countryId);
+		boolean exists = countryRepository.existsById(countryId);
 		if(!exists)
 		{
-			System.err.println("Error: Country with ID: " + orderId + " does not exist");
-			throw new IllegalStateException("Country with ID: " + orderId + " does not exist");
+			System.err.println("Error: Country with ID: " + countryId + " does not exist");
+			throw new IllegalStateException("Country with ID: " + countryId + " does not exist");
 		}
 		else
 		{
-			System.out.println("Country with ID: " + orderId + " exists so we will proceed");
-			Country victimizedOrder = countryRepository.findById(orderId).orElseThrow(() -> new IllegalStateException("Country with ID: " + orderId + " does not exist"));
+			System.out.println("Country with ID: " + countryId + " exists so we will proceed");
+			Country victimizedOrder = countryRepository.findById(countryId).orElseThrow(() -> new IllegalStateException("Country with ID: " + countryId + " does not exist"));
 			//Product victimizedProduct = productRepository.findById(product_id).orElseThrow(() -> new IllegalStateException("Product with ID: " + product_id + " does not exist"));
 			//if(product_id != null && product_id != 0) victimizedOrder.setProduct(victimizedProduct);
 //			if(quantity != null && quantity != 0) victimizedOrder.setQuantity(quantity);
