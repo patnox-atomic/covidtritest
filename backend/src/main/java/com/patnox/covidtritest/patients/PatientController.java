@@ -22,24 +22,24 @@ public class PatientController {
 	}
 	
 	@GetMapping(path = "{patientId}")
-	public Patient getOrder(@PathVariable("patientId") Long patientId) {
+	public Patient getPatient(@PathVariable("patientId") Long patientId) {
 		return patientService.getPatient(patientId);
 	}
 	
 	@PostMapping
-	public void createNewOrder(@RequestBody Patient newOrder)
+	public void createNewPatient(@RequestBody Patient newPatient)
 	{
-		patientService.addNewPatient(newOrder);
+		patientService.addNewPatient(newPatient);
 	}
 	
 	@DeleteMapping(path = "{patientId}")
-	public void deleteOrder(@PathVariable("patientId") Long patientId)
+	public void deletePatient(@PathVariable("patientId") Long patientId)
 	{
 		patientService.deletePatient(patientId);
 	}
 	
 	@PutMapping(path = "{patientId}")
-	public void updateOrder(@PathVariable("patientId") Long patientId,
+	public void updatePatient(@PathVariable("patientId") Long patientId,
 				@RequestParam(required = false) Long product_id,
 				@RequestParam(required = false) Long quantity,
 				@RequestParam(required = false) Boolean is_fullfilled,

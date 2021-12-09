@@ -23,24 +23,24 @@ public class PriorityController
 	}
 	
 	@GetMapping(path = "{priorityId}")
-	public Priority getOrder(@PathVariable("priorityId") Long priorityId) {
+	public Priority getPriority(@PathVariable("priorityId") Long priorityId) {
 		return priorityService.getPriority(priorityId);
 	}
 	
 	@PostMapping
-	public void createNewOrder(@RequestBody Priority newOrder)
+	public void createNewPriority(@RequestBody Priority newPriority)
 	{
-		priorityService.addNewPriority(newOrder);
+		priorityService.addNewPriority(newPriority);
 	}
 	
 	@DeleteMapping(path = "{priorityId}")
-	public void deleteOrder(@PathVariable("priorityId") Long priorityId)
+	public void deletePriority(@PathVariable("priorityId") Long priorityId)
 	{
 		priorityService.deletePriority(priorityId);
 	}
 	
 	@PutMapping(path = "{priorityId}")
-	public void updateOrder(@PathVariable("priorityId") Long priorityId,
+	public void updatePriority(@PathVariable("priorityId") Long priorityId,
 				@RequestParam(required = false) Long product_id,
 				@RequestParam(required = false) Long quantity,
 				@RequestParam(required = false) Boolean is_fullfilled,
